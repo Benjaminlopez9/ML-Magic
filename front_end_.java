@@ -30,21 +30,42 @@ import javax.swing.*;
 import java.awt.*;
 
 public class front_end_ {
+    public static GraphicsDevice graphic_device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+    public static int width = graphic_device.getDisplayMode().getWidth(), height = graphic_device.getDisplayMode().getHeight();
+
     public static void main(String[] args) {
-        GraphicsDevice graphic_device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        int width = graphic_device.getDisplayMode().getWidth();
-        int height = graphic_device.getDisplayMode().getHeight();
-        JFrame start_screen_ = new JFrame("Initializer Screen");
-        JPanel screen_sheet = new JPanel(new BorderLayout());
-        JButton logBTN = new JButton("Sign in");
-        logBTN.setSize(300,300);
-        start_screen_.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        start_screen_.getContentPane().add(screen_sheet, BorderLayout.CENTER);
-        start_screen_.setSize(width/3,height/2);
-        start_screen_.setLocation(width/3,height/3);
-
-        screen_sheet.add(logBTN);
-
-        start_screen_.setVisible(true);
+        window_start_screen_();
     }
+
+   public static void window_start_screen_(){
+        JFrame win_start_screen = new JFrame("Start");
+
+        JButton sample_button = new JButton("New Project");
+        sample_button.setSize(100,100);
+        sample_button.setBackground(Color.black);
+
+        JPanel win_start_sheet = new JPanel(new BorderLayout(24,24));
+        JPanel win_side_menu = new JPanel(new FlowLayout(24,24,24));
+        JPanel win_top_bar = new JPanel(new CardLayout(24,24));
+        JPanel win_center_options = new JPanel(new GridLayout(6,6,6,6));
+
+        win_start_screen.setSize(width-100,height-100);
+        win_start_screen.setLocation(50,20);
+        win_start_sheet.setBackground(Color.getHSBColor(40f, 33f, 10f));
+        win_side_menu.setBackground(Color.getHSBColor(55f, 179f, 16f));
+        win_top_bar.setBackground(Color.getHSBColor(255, 179, 1));
+        win_center_options.setBackground(Color.yellow);
+
+        win_start_screen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        win_start_screen.getContentPane().add(win_start_sheet);
+        win_start_screen.add(win_side_menu, BorderLayout.WEST);
+        win_start_screen.add(win_top_bar, BorderLayout.NORTH);
+        win_start_screen.add(win_center_options, BorderLayout.CENTER);
+
+        win_center_options.add(sample_button);
+
+
+        win_start_screen.setVisible(true);
+    }
+
 }
